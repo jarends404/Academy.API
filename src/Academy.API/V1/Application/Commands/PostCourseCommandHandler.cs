@@ -26,8 +26,8 @@ public class PostCourseCommandHandler(
             Id = Guid.NewGuid(),
             Name = request.Name,
             Description = request.Description,
-            StartDate = request.StartDate,
-            EndDate = request.EndDate
+            StartDate = DateOnly.Parse(request.StartDate),
+            EndDate = DateOnly.Parse(request.EndDate)
         });
 
         return OperationResult.Created();
