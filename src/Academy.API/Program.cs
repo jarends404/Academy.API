@@ -2,6 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Academy.API.Infrastructure.Repositories.Courses;
 using Academy.API.Swagger;
+using FluentValidation;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -24,6 +25,8 @@ builder.Services.AddApiVersioning(setup =>
 });
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddSwaggerGen();

@@ -5,5 +5,14 @@ namespace Academy.API.Models.Responses.Concrete;
 
 public class OperationResult : OperationResult<OperationResult>
 {
-    public static OperationResult Created() => new OperationResult { ResultStatus = ResultStatus.Created };
+    public static OperationResult Created() => new()
+    {
+        ResultStatus = ResultStatus.Created
+    };
+
+    public static OperationResult Invalid(List<ValidationError> validationErrors) => new()
+    {
+        ResultStatus = ResultStatus.Invalid,
+        ValidationErrors = validationErrors
+    };
 }
